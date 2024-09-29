@@ -1,22 +1,24 @@
 "use client";
+
+import React, { Suspense } from 'react';
 import Spline from "@splinetool/react-spline/next";
 import Link from "next/link";
 
-function page() {
+function Page() {
   return (
     <>
       <div className="w-screen h-auto bg-black flex flex-col md:flex-row">
         {/* Left side */}
         <div className="w-full md:w-1/2 flex flex-col pt-20 px-8 md:px-16 bg-black text-white items-center justify-center">
           <div className="ml-8 pt-10 text-4xl">Welcome to Synergy!</div>
-          <br></br>
+          <br />
           <div>
             <h1 className="text-xl md:text-xl font-bold text-left font-sans tracking-tight leading-snug">
               Looking for teammates?
             </h1>
           </div>
 
-          <br></br>
+          <br />
           <Link href="/events" passHref>
             <button className="relative inline-flex items-center justify-center p-0.5 mb-4 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-600 to-blue-500 group-hover:from-purple-600 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800">
               <span className="relative px-4 py-2 md:px-5 md:py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
@@ -34,12 +36,11 @@ function page() {
           </p>
         </div>
 
-        {/* Right side */}
-        <div className="hidden md:block w-1/2 h-screen bg-black">
-          <Spline
-            className="w-full h-full"
-            scene="https://prod.spline.design/kemDRbzPTX0MRcbT/scene.splinecode"
-          />
+        {/* Right side with Suspense */}
+        <div className="hidden md:block w-1/2 h-screen ">
+          <Suspense fallback={<LoadingComponent />}>
+            <SplineComponent />
+          </Suspense>
         </div>
       </div>
 
@@ -47,6 +48,26 @@ function page() {
     </>
   );
 }
+
+// Simple Loading Component
+const LoadingComponent = () => {
+  return (
+    <div className="flex items-center justify-center h-full">
+      <p className="text-white">Loading 3D Model...</p>
+    </div>
+  );
+};
+
+// Spline Component
+const SplineComponent = () => {
+  return (
+    <Spline
+      className="w-full h-full"
+      scene="https://prod.spline.design/eVSFfdFjvoLTbNuC/scene.splinecode"
+      // style={{ width: '100%', height: '100vh' }}
+    />
+  );
+};
 
 interface CardProps {
   imageSrc: string;
@@ -124,4 +145,4 @@ const HomeCards: React.FC = () => {
   );
 };
 
-export default page;
+export default Page;
