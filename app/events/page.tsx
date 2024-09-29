@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 interface Event {
   id: number;
@@ -8,7 +8,6 @@ interface Event {
   organizer: string;
   date: string;
   skills: string[];
-  organizerProfilePic?: string; // Optional for future profile picture
 }
 
 interface EventFormProps {
@@ -24,7 +23,6 @@ const Page: React.FC = () => {
       organizer: "John Doe",
       date: "October 10, 2024",
       skills: ["Python", "AI"],
-      organizerProfilePic: "https://via.placeholder.com/150",
     },
     {
       id: 2,
@@ -33,7 +31,6 @@ const Page: React.FC = () => {
       organizer: "Jane Smith",
       date: "November 2, 2024",
       skills: ["Business", "Marketing"],
-      organizerProfilePic: "https://via.placeholder.com/150",
     },
     {
       id: 3,
@@ -42,7 +39,6 @@ const Page: React.FC = () => {
       organizer: "Sam Lee",
       date: "October 5, 2024",
       skills: ["Photography", "Editing"],
-      organizerProfilePic: "https://via.placeholder.com/150",
     },
   ]);
 
@@ -73,21 +69,6 @@ interface EventCardProps {
 const EventCard: React.FC<EventCardProps> = ({ event }) => {
   return (
     <div className="bg-white p-6 shadow-lg rounded-lg">
-      <div className="flex items-center mb-2">
-        {event.organizerProfilePic && (
-          <img
-            src={event.organizerProfilePic}
-            alt={event.organizer}
-            className="w-8 h-8 rounded-full mr-2"
-          />
-        )}
-        <p className="text-sm text-gray-500">
-          <strong>Posted by:</strong>{' '}
-          <a href={`/profile/${event.organizer}`} className="text-blue-600 hover:underline">
-            {event.organizer}
-          </a>
-        </p>
-      </div>
       <h3 className="text-xl font-bold text-gray-900">{event.title}</h3>
       <p className="mt-2 text-gray-700">{event.description}</p>
       <p className="mt-2 text-sm text-gray-500">
@@ -107,7 +88,6 @@ const EventForm: React.FC<EventFormProps> = ({ setEvents }) => {
     organizer: "",
     date: "",
     skills: "",
-    organizerProfilePic: "", // Optional for future profile picture input
   });
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -120,7 +100,6 @@ const EventForm: React.FC<EventFormProps> = ({ setEvents }) => {
       organizer: formData.organizer,
       date: formData.date,
       skills: formData.skills.split(",").map((skill) => skill.trim()),
-      organizerProfilePic: formData.organizerProfilePic || "https://via.placeholder.com/150", // Placeholder if no profile pic is provided
     };
 
     setEvents((prevEvents) => [...prevEvents, newEvent]);
@@ -132,7 +111,6 @@ const EventForm: React.FC<EventFormProps> = ({ setEvents }) => {
       organizer: "",
       date: "",
       skills: "",
-      organizerProfilePic: "",
     });
   };
 
@@ -189,17 +167,6 @@ const EventForm: React.FC<EventFormProps> = ({ setEvents }) => {
           onChange={(e) => setFormData({ ...formData, skills: e.target.value })}
           className="w-full p-2 mt-1 border border-gray-300 rounded-md"
           required
-        />
-      </div>
-
-      <div>
-        <label className="block text-sm font-medium text-gray-700">Organizer Profile Picture (Optional)</label>
-        <input
-          type="text"
-          value={formData.organizerProfilePic}
-          onChange={(e) => setFormData({ ...formData, organizerProfilePic: e.target.value })}
-          placeholder="URL to profile picture"
-          className="w-full p-2 mt-1 border border-gray-300 rounded-md"
         />
       </div>
 
