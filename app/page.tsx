@@ -38,7 +38,7 @@ function page() {
         <div className="hidden md:block w-1/2 h-screen bg-black">
           <Spline
             className="w-full h-full"
-            scene="https://prod.spline.design/RCgvtPagbSYPtw-2/scene.splinecode"
+            scene="https://prod.spline.design/kemDRbzPTX0MRcbT/scene.splinecode"
           />
         </div>
       </div>
