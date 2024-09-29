@@ -1,41 +1,11 @@
 "use client";
 import Spline from "@splinetool/react-spline/next";
 import Link from "next/link";
-// import { FloatingDock } from "./floating-dock";
 
 function page() {
-  const dockItems = [
-    {
-      title: "",
-      icon: "Post Event",
-      href: "/post-event",
-    },
-    {
-      title: "",
-      icon: "Find Events",
-      href: "/find-events",
-    },
-    {
-      title: "",
-      icon: "Guidelines",
-      href: "/guidelines",
-    },
-    {
-      title: "",
-      icon: "Team",
-      href: "/team",
-    },
-  ];
-
   return (
     <>
       <div className="w-screen h-auto bg-black flex flex-col md:flex-row">
-        {/* <FloatingDock
-        items={dockItems}
-        desktopClassName="fixed top-4 mx-10 z-50 left-0 w-[calc(100%-100px)] justify-around"
-        mobileClassName="fixed bottom-10 left-0 w-full z-50"
-      /> */}
-
         {/* Left side */}
         <div className="w-full md:w-1/2 flex flex-col pt-20 px-8 md:px-16 bg-black text-white items-center justify-center">
           <div className="ml-8 pt-10 text-4xl">Welcome to Synergy!</div>
@@ -56,7 +26,7 @@ function page() {
           </Link>
           <p>
             Welcome to Synergy, your go-to platform for finding teammates for
-            events! Whether you're hosting or participating in an event, easily
+            events! Whether you are hosting or participating in an event, easily
             connect with others by posting your requirements or browsing through
             available opportunities. Synergy helps you create meaningful
             collaborations for any occasion—hackathons, group projects, or
